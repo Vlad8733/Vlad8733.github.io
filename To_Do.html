@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>To Do List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 80%;
+        margin: 0 auto;
+      }
+      .title {
+        text-align: center;
+        margin: 2rem 0;
+        font-size: 2rem;
+      }
+      .todo-item {
+        display: flex;
+        align-items: center;
+        margin: 1rem 0;
+      }
+      .todo-item input[type="checkbox"] {
+        margin-right: 1rem;
+      }
+      .add-todo {
+        display: flex;
+        margin: 2rem 0;
+      }
+      .add-todo input[type="text"] {
+        flex: 1;
+        padding: 0.5rem;
+        font-size: 1.2rem;
+      }
+      .add-todo input[type="submit"] {
+        padding: 0.5rem 1rem;
+        font-size: 1.2rem;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">To Do List</h1>
+      <ul id="todo-list">
+        <li class="todo-item">
+          <input type="checkbox">
+          <span>Buy groceries</span>
+        </li>
+        <li class="todo-item">
+          <input type="checkbox">
+          <span>Finish homework</span>
+        </li>
+        <li class="todo-item">
+          <input type="checkbox">
+          <span>Walk the dog</span>
+        </li>
+      </ul>
+      <form class="add-todo" id="add-todo-form">
+        <input type="text" name="todo" placeholder="Add a new task...">
+        <input type="submit" value="Add">
+      </form>
+    </div>
+    <script>
+      const form = document.querySelector('#add-todo-form');
+      const input = form.querySelector('input[name="todo"]');
+      const list = document.querySelector('#todo-list');
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        if (input.value.trim() === '') return;
+        const item = document.createElement('li');
+        item.classList.add('todo-item');
+        const checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'checkbox');
+        const text = document.createElement('span');
+        text.innerText = input.value.trim();
+        item.appendChild(checkbox);
+        item.appendChild(text);
+        list.appendChild(item);
+        input.value = '';
+      });
+    </script>
+  </body>
+</html>
+
